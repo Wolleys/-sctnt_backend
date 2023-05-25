@@ -1,4 +1,5 @@
 const { Sequelize } = require("sequelize");
+const { setupModels } = require("../models");
 
 const env = process.env;
 const sequelize = new Sequelize(
@@ -10,6 +11,7 @@ async function connect() {
   try {
     await sequelize.authenticate();
     console.log("MySQL: connection successfull");
+    models = setupModels(sequelize);
     await sequelize.sync({ force: false });
     return models;
   } catch (err) {
