@@ -1,8 +1,12 @@
 const Item = require("../../database/Item");
 
-const updateOneItem = (itemId, data) => {
-    const item = Item.updateOneItem(itemId, data);
-    return item;
+const updateOneItem = (model, itemId, data) => {
+    try {
+        const item = Item.updateOneItem(model, itemId, data);
+        return item;
+    } catch (error) {
+        throw error;
+    }
 };
 
 module.exports = { updateOneItem };

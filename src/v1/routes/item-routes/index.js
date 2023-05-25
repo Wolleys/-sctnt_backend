@@ -27,7 +27,7 @@ router.get("/:itemId", getOneItem);
 router.post("/", validateSchema(itemSchema), createNewItem);
 
 // 4. Update one item by id
-router.patch("/:itemId", updateOneItem);
+router.patch("/:itemId", validateSchema(itemSchema), updateOneItem);
 
 // 5. Delete one item by id
 router.delete("/:itemId", deleteOneItem);
