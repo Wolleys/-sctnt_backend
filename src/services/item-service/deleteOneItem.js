@@ -1,8 +1,12 @@
 const Item = require("../../database/Item");
 
-const deleteOneItem = (itemId) => {
-    const item = Item.deleteOneItem(itemId);
-    return item;
+const deleteOneItem = (model, itemId) => {
+    try {
+        const item = Item.deleteOneItem(model, itemId);
+        return item;
+    } catch (error) {
+        throw error;
+    }
 };
 
 module.exports = { deleteOneItem };
