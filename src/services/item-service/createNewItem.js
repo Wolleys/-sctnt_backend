@@ -1,8 +1,12 @@
 const Item = require("../../database/Item");
 
-const createNewItem = (newItem) => {
-    const createdItem = Item.createNewItem(newItem);
-    return createdItem;
+const createNewItem = (model, newItem) => {
+    try {
+        const createdItem = Item.createNewItem(model, newItem);
+        return createdItem;
+    } catch (error) {
+        throw error;
+    }
 };
 
 module.exports = { createNewItem };

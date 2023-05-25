@@ -15,7 +15,7 @@ function itemModel(sequelize) {
                 allowNull: false,
             },
             price: {
-                type: DataTypes.STRING,
+                type: DataTypes.FLOAT(11, 2),
                 allowNull: false,
             },
             color: {
