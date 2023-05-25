@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-//Import item controllers
+// Import item controllers
 const {
     getOneItem,
     getAllItems,
@@ -10,7 +10,13 @@ const {
     deleteOneItem,
 } = require("../../../controllers/item-controller");
 
-//Item routes
+// Import middleware
+const { validateSchema } = require("../../../middlewares/validate-schema");
+
+// Import schema
+const { itemSchema } = require("../../../schemas/item-schema");
+
+// Item routes
 // 1. Get all items
 router.get("/", getAllItems);
 
@@ -18,7 +24,7 @@ router.get("/", getAllItems);
 router.get("/:itemId", getOneItem);
 
 // 3. Create a new item
-router.post("/", createNewItem);
+router.post("/", validateSchema(itemSchema), createNewItem);
 
 // 4. Update one item by id
 router.patch("/:itemId", updateOneItem);
