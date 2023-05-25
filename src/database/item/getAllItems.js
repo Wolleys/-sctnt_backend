@@ -9,6 +9,7 @@ const getAllItems = async (model) => {
                 "price",
                 "part_status",
                 "location",
+                "supplier_id",
             ],
         });
         return allItems;

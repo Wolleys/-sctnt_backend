@@ -9,6 +9,7 @@ const getOneItem = async (model, itemId) => {
                 "price",
                 "part_status",
                 "location",
+                "supplier_id",
             ],
         });
         if (!item) {
