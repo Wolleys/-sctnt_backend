@@ -2,7 +2,14 @@ const getOneItem = async (model, itemId) => {
     try {
         const item = await model.Item.findOne({
             where: { id: itemId },
-            attributes: ["id", "name", "price", "color", "location"],
+            attributes: [
+                "id",
+                "description",
+                "part_number",
+                "price",
+                "part_status",
+                "location",
+            ],
         });
         if (!item) {
             throw {

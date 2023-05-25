@@ -1,8 +1,8 @@
 const { DataTypes, Sequelize } = require("sequelize");
 
-function itemModel(sequelize) {
-    const Item = sequelize.define(
-        "item",
+function supplierModel(sequelize) {
+    const Supplier = sequelize.define(
+        "supplier",
         {
             id: {
                 type: DataTypes.UUID,
@@ -10,23 +10,19 @@ function itemModel(sequelize) {
                 primaryKey: true,
                 unique: true,
             },
-            description: {
+            first_name: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            part_number: {
+            last_name: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            price: {
-                type: DataTypes.FLOAT(11, 2),
-                allowNull: false,
-            },
-            part_status: {
+            phone_number: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            location: {
+            email: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
@@ -37,11 +33,11 @@ function itemModel(sequelize) {
             createdAt: "created_at",
             updatedAt: "updated_at",
             deletedAt: "deleted_at",
-            tableName: "item",
+            tableName: "supplier",
         }
     );
 
-    return Item;
+    return Supplier;
 }
 
-module.exports = { itemModel };
+module.exports = { supplierModel };
