@@ -3,7 +3,7 @@ const createNewItem = async (model, newItem) => {
         const createdItem = await model.Item.create(newItem);
         return createdItem;
     } catch (error) {
-        throw { status: error?.status || 500, error: error?.message || error };
+        throw { status: error?.status || 500, message: error?.message || error };
     }
 };
 
