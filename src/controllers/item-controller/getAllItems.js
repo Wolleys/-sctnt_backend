@@ -2,9 +2,10 @@ const itemService = require("../../services/item-service");
 
 const getAllItems = async (req, res) => {
     const model = req.models;
+    const { page, size, q } = req.query;
 
     try {
-        const allItems = await itemService.getAllItems(model);
+        const allItems = await itemService.getAllItems(model, page, size, q);
         res.send({ status: "OK", allItems });
     } catch (error) {
         res
