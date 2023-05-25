@@ -1,8 +1,12 @@
 const Item = require("../../database/Item");
 
-const getAllItems = (organizationId) => {
-    const allItems = Item.getAllItems(organizationId);
-    return allItems;
+const getAllItems = (model) => {
+    try {
+        const allItems = Item.getAllItems(model);
+        return allItems;
+    } catch (error) {
+        throw error;
+    }
 };
 
 module.exports = { getAllItems };
