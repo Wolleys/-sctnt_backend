@@ -5,7 +5,7 @@ const getAllSuppliers = async (req, res) => {
 
     try {
         const allSuppliers = await supplierService.getAllSuppliers(model);
-        res.send({ status: "OK", allSuppliers });
+        res.send({ status: "OK", data: allSuppliers });
     } catch (error) {
         res
             .status(error?.status || 500)

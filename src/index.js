@@ -2,9 +2,14 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const env = process.env;
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 const startServer = require("./config/startServer");
 const attachModels = require("./middlewares/attach-models");
 const routes = require("./v1/routes");
+
+// Cross Origin Resource Sharing
+app.use(cors(corsOptions));
 
 // Built-in middleware for json
 app.use(express.json());

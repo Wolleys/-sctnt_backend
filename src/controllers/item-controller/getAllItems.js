@@ -6,7 +6,7 @@ const getAllItems = async (req, res) => {
 
     try {
         const allItems = await itemService.getAllItems(model, page, size, q);
-        res.send({ status: "OK", allItems });
+        res.send({ status: "OK", data: allItems });
     } catch (error) {
         res
             .status(error?.status || 500)
