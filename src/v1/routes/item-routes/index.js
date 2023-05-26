@@ -16,8 +16,47 @@ const { validateSchema } = require("../../../middlewares/validate-schema");
 // Import schema
 const { itemSchema } = require("../../../schemas/item-schema");
 
-// Item routes
-// 1. Get all items
+/**
+ * @openapi
+ * /api/v1/items:
+ *   get:
+ *     tags:
+ *       - Items
+ *     parameters:
+ *       - in: query
+ *         name: q
+ *         schema:
+ *           type: string
+ *         description: Get a specific item
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array 
+ *                   items: 
+ *                     $ref: "#/components/schemas/Items"
+ *       5XX:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status: 
+ *                   type: string
+ *                   example: FAILED
+ *                 error:
+ *                    type: string 
+ *                    example: "Some error message"
+ */
 router.get("/", getAllItems);
 
 // 2. Get one item by id
