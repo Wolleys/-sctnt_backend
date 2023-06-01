@@ -1,12 +1,8 @@
 const Supplier = require("../../data-access/Supplier");
+const { getAllEntities } = require("../service-module");
 
 const getAllSuppliers = (model) => {
-    try {
-        const allSuppliers = Supplier.getAllSuppliers(model);
-        return allSuppliers;
-    } catch (error) {
-        throw error;
-    }
+    return getAllEntities(model, Supplier.getAllSuppliers);
 };
 
 module.exports = { getAllSuppliers };

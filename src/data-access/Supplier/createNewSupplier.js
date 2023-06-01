@@ -8,7 +8,7 @@ const createNewSupplier = async (model, newSupplier) => {
     const emailAttrs = ["email"];
     await alreadyExists(model.Supplier, emailCol, emailVal, emailAttrs);
 
-    await createNewEntity(model.Supplier, newSupplier);
+    return createNewEntity(model.Supplier, newSupplier);
 };
 
 module.exports = { createNewSupplier };

@@ -12,4 +12,17 @@ const createEntity = async (req, res, service) => {
     }
 };
 
-module.exports = { createEntity };
+const getAllEntities = async (req, res, service) => {
+    const model = req.models;
+
+    try {
+        const allEntities = await service(model);
+        res.send({ status: "OK", data: allEntities });
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", error: error?.message || error });
+    }
+};
+
+module.exports = { createEntity, getAllEntities };

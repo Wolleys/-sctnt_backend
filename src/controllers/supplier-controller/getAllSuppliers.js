@@ -1,16 +1,8 @@
 const supplierService = require("../../services/supplier-service");
+const { getAllEntities } = require("../controller-module");
 
-const getAllSuppliers = async (req, res) => {
-    const model = req.models;
-
-    try {
-        const allSuppliers = await supplierService.getAllSuppliers(model);
-        res.send({ status: "OK", data: allSuppliers });
-    } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
-    }
+const getAllSuppliers = (req, res) => {
+    getAllEntities(req, res, supplierService.getAllSuppliers);
 };
 
 module.exports = { getAllSuppliers };

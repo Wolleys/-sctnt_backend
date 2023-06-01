@@ -7,4 +7,13 @@ const createNewEntity = (model, newEntity, dataAccess) => {
     }
 };
 
-module.exports = { createNewEntity };
+const getAllEntities = (model, dataAccess) => {
+    try {
+        const allEntities = dataAccess(model);
+        return allEntities;
+    } catch (error) {
+        throw error;
+    }
+};
+
+module.exports = { createNewEntity, getAllEntities };
