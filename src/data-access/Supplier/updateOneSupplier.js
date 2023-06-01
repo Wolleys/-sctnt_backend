@@ -1,14 +1,12 @@
 const { findRecord } = require("../helpers/findRecord");
+const { updateOneEntity } = require("../data-access-module");
 
 const updateOneSupplier = async (model, supplierId, data) => {
     const findSupplier = "a supplier";
-    await findRecord(model.Supplier, findSupplier, supplierId);
+    const condition = { id: supplierId };
 
-    try {
-        await model.Supplier.update({ ...data }, { where: { id: supplierId } });
-    } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
-    }
+    await findRecord(model.Supplier, findSupplier, condition, ["id"]);
+    updateOneEntity(model.Supplier, supplierId, data);
 };
 
 module.exports = { updateOneSupplier };

@@ -39,4 +39,24 @@ const getOneEntity = async (req, res, idName, service) => {
     }
 };
 
-module.exports = { createEntity, getAllEntities, getOneEntity };
+const updateOneEntity = async (req, res, idName, service) => {
+    const body = req.body;
+    const model = req.models;
+    const entityId = req.params[idName];
+
+    try {
+        await service(model, entityId, body);
+        res.send({ status: "OK", message: "Record updated successfully." });
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", error: error?.message || error });
+    }
+};
+
+module.exports = {
+    createEntity,
+    getAllEntities,
+    getOneEntity,
+    updateOneEntity,
+};

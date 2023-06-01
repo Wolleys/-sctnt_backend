@@ -37,4 +37,17 @@ const getOneEntity = async (model, entityId, attributes, entityName) => {
     }
 };
 
-module.exports = { createNewEntity, getAllEntities, getOneEntity };
+const updateOneEntity = async (model, entityId, updateData) => {
+    try {
+        await model.update({ ...updateData }, { where: { id: entityId } });
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
+    }
+};
+
+module.exports = {
+    createNewEntity,
+    getAllEntities,
+    getOneEntity,
+    updateOneEntity,
+};

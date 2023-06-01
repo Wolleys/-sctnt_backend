@@ -25,4 +25,18 @@ const getOneEntity = (model, entityId, dataAccess) => {
     }
 };
 
-module.exports = { createNewEntity, getAllEntities, getOneEntity };
+const updateOneEntity = (model, entityId, updateData, dataAccess) => {
+    try {
+        const entity = dataAccess(model, entityId, updateData);
+        return entity;
+    } catch (error) {
+        throw error;
+    }
+};
+
+module.exports = {
+    createNewEntity,
+    getAllEntities,
+    getOneEntity,
+    updateOneEntity,
+};

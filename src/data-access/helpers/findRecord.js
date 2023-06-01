@@ -1,14 +1,18 @@
-const findRecord = async (model, record, recordId) => {
-    const recordToFind = await model.findOne({
-        where: { id: recordId },
-        attributes: ["id"],
-    });
-
-    if (!recordToFind) {
-        throw {
-            status: 400,
-            message: `Can't find ${record} with the id '${recordId}'`,
-        };
+const findRecord = async (model, record, condition, attributes) => {
+    try {
+        const recordToFind = await model.findOne({
+            where: condition,
+            attributes,
+        });
+        if (!recordToFind) {
+            throw {
+                status: 400,
+                message: `Can't find ${record.toLowerCase()} with the specified condition`,
+            };
+        }
+        return recordToFind;
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
     }
 };
 
