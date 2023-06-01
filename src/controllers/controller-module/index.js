@@ -54,9 +54,24 @@ const updateOneEntity = async (req, res, idName, service) => {
     }
 };
 
+const deleteOneEntity = async (req, res, idName, service) => {
+    const model = req.models;
+    const entityId = req.params[idName];
+
+    try {
+        await service(model, entityId);
+        res.send({ status: "OK", message: "Record deleted successfully." });
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", error: error?.message || error });
+    }
+};
+
 module.exports = {
     createEntity,
     getAllEntities,
     getOneEntity,
     updateOneEntity,
+    deleteOneEntity,
 };

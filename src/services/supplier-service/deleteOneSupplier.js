@@ -1,12 +1,8 @@
+const { deleteOneEntity } = require("../service-module");
 const Supplier = require("../../data-access/Supplier");
 
 const deleteOneSupplier = (model, supplierId) => {
-    try {
-        const supplier = Supplier.deleteOneSupplier(model, supplierId);
-        return supplier;
-    } catch (error) {
-        throw error;
-    }
+    return deleteOneEntity(model, supplierId, Supplier.deleteOneSupplier);
 };
 
 module.exports = { deleteOneSupplier };

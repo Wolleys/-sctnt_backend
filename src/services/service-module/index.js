@@ -34,9 +34,19 @@ const updateOneEntity = (model, entityId, updateData, dataAccess) => {
     }
 };
 
+const deleteOneEntity = async (model, entityId, dataAccess) => {
+    try {
+        const entity = dataAccess(model, entityId);
+        return entity;
+    } catch (error) {
+        throw error;
+    }
+};
+
 module.exports = {
     createNewEntity,
     getAllEntities,
     getOneEntity,
     updateOneEntity,
+    deleteOneEntity,
 };

@@ -19,7 +19,7 @@ const getAllEntities = async (model, attributes = [], order = []) => {
     }
 };
 
-const getOneEntity = async (model, entityId, attributes, entityName) => {
+const getOneEntity = async (model, entityId, attributes, desc) => {
     try {
         const entity = await model.findOne({
             where: { id: entityId },
@@ -28,7 +28,7 @@ const getOneEntity = async (model, entityId, attributes, entityName) => {
         if (!entity) {
             throw {
                 status: 404,
-                message: `Can't find ${entityName.toLowerCase()} with the id '${entityId}'`,
+                message: `Can't find ${desc.toLowerCase()} with the id '${entityId}'`,
             };
         }
         return entity;
@@ -45,9 +45,27 @@ const updateOneEntity = async (model, entityId, updateData) => {
     }
 };
 
+const deleteOneEntity = async (model, desc, entityId, cond, attrs) => {
+    try {
+        const entity = await model.destroy({
+            where: cond,
+            attributes: attrs,
+        });
+        if (!entity) {
+            throw {
+                status: 400,
+                message: `Can't find ${desc.toLowerCase()} with the id '${entityId}'`,
+            };
+        }
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
+    }
+};
+
 module.exports = {
     createNewEntity,
     getAllEntities,
     getOneEntity,
     updateOneEntity,
+    deleteOneEntity,
 };
