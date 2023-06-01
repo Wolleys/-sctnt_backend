@@ -1,4 +1,5 @@
 const { alreadyExists } = require("../helpers/alreadyExists");
+const { createNewEntity } = require("../data-access-module");
 
 const createNewSupplier = async (model, newSupplier) => {
     // Check if email already exists
@@ -7,12 +8,7 @@ const createNewSupplier = async (model, newSupplier) => {
     const emailAttrs = ["email"];
     await alreadyExists(model.Supplier, emailCol, emailVal, emailAttrs);
 
-    try {
-        const createdSupplier = await model.Supplier.create(newSupplier);
-        return createdSupplier;
-    } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
-    }
+    await createNewEntity(model.Supplier, newSupplier);
 };
 
 module.exports = { createNewSupplier };

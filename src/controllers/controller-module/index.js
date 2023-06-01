@@ -3,7 +3,7 @@ const createEntity = async (req, res, service) => {
     const model = req.models;
 
     try {
-        const createdEntity = await service.createNewEntity(model, body);
+        const createdEntity = await service(model, body);
         res.status(201).send({ status: "OK", data: createdEntity });
     } catch (error) {
         res

@@ -1,12 +1,8 @@
-const Supplier = require("../../database/Supplier");
+const Supplier = require("../../data-access/Supplier");
+const { createNewEntity } = require("../service-module");
 
 const createNewSupplier = (model, newSupplier) => {
-    try {
-        const createdSupplier = Supplier.createNewSupplier(model, newSupplier);
-        return createdSupplier;
-    } catch (error) {
-        throw error;
-    }
+    return createNewEntity(model, newSupplier, Supplier.createNewSupplier);
 };
 
 module.exports = { createNewSupplier };
