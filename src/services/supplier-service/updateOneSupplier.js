@@ -1,4 +1,4 @@
-const Supplier = require("../../database/Supplier");
+const Supplier = require("../../data-access/Supplier");
 
 const updateOneSupplier = (model, supplierId, data) => {
     try {

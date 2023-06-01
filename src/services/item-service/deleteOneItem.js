@@ -1,4 +1,4 @@
-const Item = require("../../database/Item");
+const Item = require("../../data-access/Item");
 
 const deleteOneItem = (model, itemId) => {
     try {

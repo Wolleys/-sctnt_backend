@@ -1,4 +1,4 @@
-const Item = require("../../database/Item");
+const Item = require("../../data-access/Item");
 
 const getAllItems = (model, page, size, q) => {
     try {

@@ -1,4 +1,4 @@
-const Item = require("../../database/Item");
+const Item = require("../../data-access/Item");
 
 const updateOneItem = (model, itemId, data) => {
     try {
