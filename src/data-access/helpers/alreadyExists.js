@@ -1,15 +1,17 @@
+const {
+    errorHandler,
+    conflictError,
+} = require("../data-access-module/errorHandler");
+
 const alreadyExists = async (model, cond, value, attributes) => {
     try {
         const recordToCheck = await model.findOne({ where: cond, attributes });
         if (recordToCheck) {
-            throw {
-                status: 400,
-                message: `'${value}' has already been added`,
-            };
+            conflictError(value);
         }
         return recordToCheck;
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
+        errorHandler(error);
     }
 };
 

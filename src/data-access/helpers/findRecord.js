@@ -1,15 +1,17 @@
-const findRecord = async (model, record, cond, attributes) => {
+const {
+    errorHandler,
+    notFoundError,
+} = require("../data-access-module/errorHandler");
+
+const findRecord = async (model, desc, entityId, cond, attributes) => {
     try {
         const recordToFind = await model.findOne({ where: cond, attributes });
         if (!recordToFind) {
-            throw {
-                status: 400,
-                message: `Can't find ${record.toLowerCase()} with the specified condition`,
-            };
+            notFoundError(desc, entityId);
         }
         return recordToFind;
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
+        errorHandler(error);
     }
 };
 

@@ -1,3 +1,5 @@
+const errorHandler = require("./errorHandler");
+
 const createEntity = async (req, res, service) => {
     const body = req.body;
     const model = req.models;
@@ -6,9 +8,7 @@ const createEntity = async (req, res, service) => {
         const createdEntity = await service(model, body);
         res.status(201).send({ status: "OK", data: createdEntity });
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
+        errorHandler(res, error);
     }
 };
 
@@ -17,11 +17,9 @@ const getAllEntities = async (req, res, service) => {
 
     try {
         const allEntities = await service(model);
-        res.send({ status: "OK", data: allEntities });
+        res.status(200).send({ status: "OK", data: allEntities });
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
+        errorHandler(res, error);
     }
 };
 
@@ -31,11 +29,9 @@ const getOneEntity = async (req, res, idName, service) => {
 
     try {
         const entity = await service(model, entityId);
-        res.send({ status: "OK", data: entity });
+        res.status(200).send({ status: "OK", data: entity });
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
+        errorHandler(res, error);
     }
 };
 
@@ -46,11 +42,9 @@ const updateOneEntity = async (req, res, idName, service) => {
 
     try {
         await service(model, entityId, body);
-        res.send({ status: "OK", message: "Record updated successfully." });
+        res.status(200).send({ status: "OK", message: "Record updated successfully." });
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
+        errorHandler(res, error);
     }
 };
 
@@ -60,11 +54,9 @@ const deleteOneEntity = async (req, res, idName, service) => {
 
     try {
         await service(model, entityId);
-        res.send({ status: "OK", message: "Record deleted successfully." });
+        res.status(200).send({ status: "OK", message: "Record deleted successfully." });
     } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", error: error?.message || error });
+        errorHandler(res, error);
     }
 };
 

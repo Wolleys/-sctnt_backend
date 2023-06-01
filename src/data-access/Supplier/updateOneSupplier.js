@@ -6,7 +6,7 @@ const updateOneSupplier = async (model, supplierId, data) => {
     const cond = { id: supplierId };
     const attrs = ["id"];
 
-    await findRecord(model.Supplier, desc, cond, attrs);
+    await findRecord(model.Supplier, desc, supplierId, cond, attrs);
     updateOneEntity(model.Supplier, cond, data);
 };
 
