@@ -1,9 +1,6 @@
-const findRecord = async (model, record, condition, attributes) => {
+const findRecord = async (model, record, cond, attributes) => {
     try {
-        const recordToFind = await model.findOne({
-            where: condition,
-            attributes,
-        });
+        const recordToFind = await model.findOne({ where: cond, attributes });
         if (!recordToFind) {
             throw {
                 status: 400,

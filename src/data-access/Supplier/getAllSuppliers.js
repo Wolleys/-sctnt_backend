@@ -1,11 +1,10 @@
 const { getAllEntities } = require("../data-access-module");
 
 const getAllSuppliers = (model) => {
-    return getAllEntities(
-        model.Supplier,
-        ["id", "first_name", "last_name", "phone_number", "email"],
-        [["created_at", "DESC"]]
-    );
+    const order = [["created_at", "DESC"]];
+    const attrs = ["id", "first_name", "last_name", "phone_number", "email"];
+
+    return getAllEntities(model.Supplier, attrs, order);
 };
 
 module.exports = { getAllSuppliers };

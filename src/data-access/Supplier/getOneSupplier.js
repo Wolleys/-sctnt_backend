@@ -1,12 +1,11 @@
 const { getOneEntity } = require("../data-access-module");
 
 const getOneSupplier = (model, supplierId) => {
-    return getOneEntity(
-        model.Supplier,
-        supplierId,
-        ["id", "first_name", "last_name", "phone_number", "email"],
-        "a supplier"
-    );
+    const desc = "a supplier";
+    const cond = { id: supplierId };
+    const attrs = ["id", "first_name", "last_name", "phone_number", "email"];
+
+    return getOneEntity(model.Supplier, desc, supplierId, cond, attrs);
 };
 
 module.exports = { getOneSupplier };

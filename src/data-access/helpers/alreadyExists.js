@@ -1,16 +1,16 @@
-const alreadyExists = async (model, column, value, attributes) => {
-    const recordToCheck = await model.findOne({
-        where: { [column]: value },
-        attributes: attributes,
-    });
-
-    if (recordToCheck) {
-        throw {
-            status: 400,
-            message: `'${value}' has already been added.`,
-        };
+const alreadyExists = async (model, cond, value, attributes) => {
+    try {
+        const recordToCheck = await model.findOne({ where: cond, attributes });
+        if (recordToCheck) {
+            throw {
+                status: 400,
+                message: `'${value}' has already been added`,
+            };
+        }
+        return recordToCheck;
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
     }
-    return recordToCheck;
 };
 
 module.exports = { alreadyExists };
