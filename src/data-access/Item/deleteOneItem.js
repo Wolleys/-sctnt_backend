@@ -1,12 +1,11 @@
-const { deleteRecord } = require("../helpers/deleteRecord");
+const { deleteOneEntity } = require("../data-access-module");
 
-const deleteOneItem = async (model, itemId) => {
-    try {
-        const findItem = "an item";
-        await deleteRecord(model.Item, findItem, itemId);
-    } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
-    }
+const deleteOneItem = (model, itemId) => {
+    const desc = "an item";
+    const cond = { id: itemId };
+    const attrs = ["id"];
+
+    return deleteOneEntity(model.Item, desc, itemId, cond, attrs);
 };
 
 module.exports = { deleteOneItem };
