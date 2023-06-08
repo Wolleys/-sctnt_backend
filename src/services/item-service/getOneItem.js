@@ -1,12 +1,8 @@
+const { getOneEntity } = require("../service-module");
 const Item = require("../../data-access/Item");
 
 const getOneItem = (model, itemId) => {
-    try {
-        const item = Item.getOneItem(model, itemId);
-        return item;
-    } catch (error) {
-        throw error;
-    }
+    return getOneEntity(model, itemId, Item.getOneItem);
 };
 
 module.exports = { getOneItem };
