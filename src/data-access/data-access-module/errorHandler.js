@@ -11,7 +11,7 @@ const conflictError = (value) => {
 };
 
 const notFoundError = (desc, entityId) => {
-    const status = 400;
+    const status = 404;
     const message = `Can't find ${desc.toLowerCase()} with the id '${entityId}'`;
     throw { status, message };
 };

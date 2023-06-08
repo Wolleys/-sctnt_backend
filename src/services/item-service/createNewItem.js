@@ -1,12 +1,8 @@
+const { createNewEntity } = require("../service-module");
 const Item = require("../../data-access/Item");
 
 const createNewItem = (model, newItem) => {
-    try {
-        const createdItem = Item.createNewItem(model, newItem);
-        return createdItem;
-    } catch (error) {
-        throw error;
-    }
+    return createNewEntity(model, newItem, Item.createNewItem);
 };
 
 module.exports = { createNewItem };
